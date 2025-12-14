@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Roni V9.1 (隱藏已預約時段版) */
+        /* Roni V9.2 Ultimate (網址更新 + 手機驗證版) */
         :root {
             --bg-color: #080808;
             --card-bg: #101010;
@@ -159,7 +159,7 @@
             </div>
             <div class="form-group">
                 <label>聯絡電話 / PHONE</label>
-                <input type="tel" name="phone" id="inputPhone" required placeholder="09xx-xxx-xxx" maxlength="10">
+                <input type="tel" name="phone" id="inputPhone" required placeholder="09xx-xxx-xxx">
             </div>
             <div class="form-group">
                 <label>諮詢廠館 / LOCATION</label>
@@ -193,7 +193,7 @@
             <div class="form-group">
                 <label>預約日期 / DATE</label>
                 <select name="dateSelect" id="dateSelect" required>
-                    <option value="">讀取資料中...</option>
+                    <option value="">讀取可預約時段...</option>
                 </select>
             </div>
 
@@ -234,11 +234,14 @@
 
 <script>
     // ==========================================
-    // ⚙️ 系統設定
+    // ⚙️ 系統設定 (已更新您的新網址)
     // ==========================================
     const CONFIG = {
         discordUrl: "https://discordapp.com/api/webhooks/1449799845144559731/pTkKrAfV2NlUayLtBqN2nNLAXj5ktq_6cXsYwEgrZCWjCFw7j8dFscCG7kVmyrhAlLps",
+        
+        // ⚠️ 這裡已更新為您提供的正確網址
         googleScriptUrl: "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec",
+        
         lineUrl: "https://line.me/ti/p/@781uizhn",
         limitDate: "2025-12-28",
         limitTime: 18
@@ -258,12 +261,11 @@
             .then(response => response.json())
             .then(data => {
                 BOOKED_SLOTS = data;
-                // console.log("已預約清單:", BOOKED_SLOTS); // 如果需要除錯可打開
                 initCalendar();
             })
             .catch(error => { 
                 console.error("連線錯誤:", error); 
-                alert("無法讀取預約資料，請檢查網路或聯繫管理員。");
+                alert("無法讀取預約資料，請檢查網路狀態。");
                 initCalendar(); 
             });
     }
@@ -277,8 +279,23 @@
 
     function goToStep(step) {
         if(step === 2) {
-            if(!document.getElementById('inputName').value || !document.getElementById('inputPhone').value || !document.getElementById('inputFactory').value) {
-                alert("請完整填寫資料"); return;
+            // 第一頁驗證
+            const name = document.getElementById('inputName').value.trim();
+            const phone = document.getElementById('inputPhone').value.trim();
+            const factory = document.getElementById('inputFactory').value;
+
+            // 1. 基本空值檢查
+            if(!name || !phone || !factory) {
+                alert("請完整填寫基本資料"); 
+                return;
+            }
+
+            // 2. 🔥 新增：手機號碼驗證 (至少10個數字)
+            // 先移除所有非數字的符號(例如 - 號)
+            const purePhone = phone.replace(/\D/g, '');
+            if (purePhone.length < 10) {
+                alert("⚠️ 手機號碼格式錯誤\n\n請輸入完整號碼 (至少 10 碼數字)");
+                return; // 阻止跳頁
             }
         }
         document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
@@ -325,7 +342,7 @@
 
         for(let h=10; h<=endH; h++) {
             const timeStr = `${h.toString().padStart(2,'0')}:00`;
-            const fullSlot = `${dateVal} ${timeStr}`; // 格式：2025-12-20 10:00
+            const fullSlot = `${dateVal} ${timeStr}`;
             
             const btn = document.createElement('div');
             btn.className = 'time-btn';
@@ -335,7 +352,7 @@
             const isBooked = BOOKED_SLOTS.some(slot => slot.includes(fullSlot));
             
             if (isBooked) {
-                // 如果被預約，直接隱藏 (display: none via .hidden)
+                // 如果被預約，直接隱藏
                 btn.classList.add('hidden');
             } else {
                 btn.onclick = function() {
@@ -343,12 +360,12 @@
                     btn.classList.add('selected');
                     timeInput.value = timeStr;
                 };
-                timeGrid.appendChild(btn); // 只有沒被約的才加入顯示
+                timeGrid.appendChild(btn);
             }
         }
         
-        // 如果該天全部都被約滿了，顯示提示
-        if (timeGrid.children.length === 0) {
+        // 如果該天全部都被約滿了
+        if (timeGrid.querySelectorAll('.time-btn:not(.hidden)').length === 0) {
             timeGrid.innerHTML = '<div style="grid-column: span 3; text-align:center; color:#d9534f; font-size:12px;">本日預約已滿</div>';
         }
     }
@@ -371,7 +388,7 @@
         const fullDateTime = `${data.dateSelect} ${timeInput.value}`;
         
         formData.append("date", fullDateTime);
-        formData.set("phone", "'" + data.phone);
+        formData.set("phone", "'" + data.phone); // 強制加 '
 
         const discordPayload = {
             username: "Roni 預約管家",
