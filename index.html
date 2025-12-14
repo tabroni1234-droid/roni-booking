@@ -9,21 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Roni V6.0 Royal Edition --- */
+        /* --- Roni V7.0 Ultimate Royal Edition --- */
         :root {
             --bg-color: #080808;
             --card-bg: #101010;
-            --primary-gold: #C8AA6E; /* 香檳金，比亮金更優雅 */
+            --primary-gold: #C8AA6E; /* 香檳金 */
             --gold-gradient: linear-gradient(to right, #C8AA6E, #F0E68C, #C8AA6E);
             --text-main: #E0E0E0;
             --text-muted: #888888;
-            --line-color: #333;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Noto Serif TC', serif; /* 優雅宋體 */
+            font-family: 'Noto Serif TC', serif;
             margin: 0; padding: 20px;
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
@@ -31,18 +30,18 @@
         }
 
         .container {
-            width: 100%; max-width: 400px;
+            width: 100%; max-width: 420px;
             background: var(--card-bg);
             padding: 50px 40px;
-            border: 1px solid rgba(200, 170, 110, 0.2); /* 極細金框 */
+            border: 1px solid rgba(200, 170, 110, 0.2);
             box-shadow: 0 40px 80px rgba(0,0,0,0.9);
             position: relative;
             overflow: hidden;
-            /* 仿紙張質感 */
             background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
+            min-height: 500px; /* 固定最小高度，避免翻頁時跳動 */
         }
 
-        /* 四角裝飾 (營造邀請函感) */
+        /* 四角裝飾 */
         .corner {
             position: absolute; width: 15px; height: 15px;
             border: 1px solid var(--primary-gold);
@@ -53,98 +52,93 @@
         .bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
         .br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-        header { text-align: center; margin-bottom: 50px; position: relative; z-index: 2; }
+        header { text-align: center; margin-bottom: 40px; position: relative; z-index: 2; }
         
-        /* Logo 優化 */
         .logo-box {
-            width: 80px; height: 80px; margin: 0 auto 20px;
+            width: 80px; height: 80px; margin: 0 auto 15px;
             display: flex; justify-content: center; align-items: center;
         }
         .logo-box img {
             width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-            border: 2px solid var(--primary-gold);
-            padding: 3px;
+            border: 2px solid var(--primary-gold); padding: 3px;
         }
         .logo-placeholder { font-size: 30px; color: var(--primary-gold); }
 
         h1 {
-            font-family: 'Cinzel', serif; /* 羅馬雕刻字體 */
-            font-size: 20px; margin: 0 0 10px 0;
-            color: var(--primary-gold);
-            letter-spacing: 2px; line-height: 1.4;
-            text-transform: uppercase;
+            font-family: 'Cinzel', serif; font-size: 20px; margin: 0 0 10px 0;
+            color: var(--primary-gold); letter-spacing: 2px; text-transform: uppercase;
         }
         
         .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 10px; color: var(--text-muted);
-            letter-spacing: 4px; text-transform: uppercase;
+            font-family: 'Noto Serif TC', serif; /* 改為宋體 */
+            font-size: 13px; color: var(--text-muted);
+            letter-spacing: 2px;
             border-top: 1px solid #333; border-bottom: 1px solid #333;
-            display: inline-block; padding: 5px 15px;
+            display: inline-block; padding: 8px 15px; margin-top: 5px;
         }
 
-        /* 翻頁容器 */
-        .step-container { position: relative; min-height: 380px; }
+        /* 翻頁系統 */
+        .step-container { position: relative; }
         .step {
-            position: absolute; top: 0; left: 0; width: 100%;
-            opacity: 0; transform: translateY(20px); pointer-events: none;
-            transition: all 0.5s ease-in-out;
+            display: none; /* 預設隱藏 */
+            animation: fadeIn 0.6s ease;
         }
-        .step.active {
-            opacity: 1; transform: translateY(0); pointer-events: all; position: relative;
+        .step.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 輸入欄位設計：底線式 (像填寫合約) */
-        .form-group { margin-bottom: 35px; position: relative; }
-        
-        label {
-            display: block; font-size: 13px; color: var(--primary-gold);
-            margin-bottom: 8px; letter-spacing: 1px;
-        }
+        /* 輸入欄位 */
+        .form-group { margin-bottom: 30px; }
+        label { display: block; font-size: 13px; color: var(--primary-gold); margin-bottom: 8px; letter-spacing: 1px; }
 
         input, select, textarea {
             width: 100%; padding: 10px 0;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #444; /* 只有底線 */
-            color: #fff; font-family: 'Noto Serif TC', serif;
-            font-size: 16px; border-radius: 0;
-            outline: none; transition: 0.4s;
-            appearance: none;
+            background: transparent; border: none;
+            border-bottom: 1px solid #444;
+            color: #fff; font-family: 'Noto Serif TC', serif; font-size: 16px;
+            outline: none; transition: 0.4s; border-radius: 0; appearance: none;
         }
+        input:focus, select:focus, textarea:focus { border-bottom-color: var(--primary-gold); }
 
-        input:focus, select:focus, textarea:focus {
-            border-bottom-color: var(--primary-gold);
-        }
-        
-        input::placeholder { color: #444; font-size: 14px; font-family: sans-serif; }
-
-        /* 按鈕設計 */
-        .btn-group { margin-top: 40px; display: flex; gap: 15px; }
+        /* 按鈕群組 */
+        .btn-group { margin-top: 40px; display: flex; gap: 15px; flex-direction: column; }
+        .btn-row { display: flex; gap: 15px; width: 100%; }
         
         button {
-            flex: 1; padding: 15px;
-            background: transparent;
-            border: 1px solid var(--primary-gold);
+            width: 100%; padding: 15px;
+            background: transparent; border: 1px solid var(--primary-gold);
             color: var(--primary-gold);
             font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
-            letter-spacing: 2px; cursor: pointer;
-            transition: 0.3s; text-transform: uppercase;
+            letter-spacing: 1px; cursor: pointer; transition: 0.3s;
         }
-
-        button.primary {
-            background: var(--primary-gold);
-            color: #000;
-        }
-
+        button.primary { background: var(--primary-gold); color: #000; }
         button:active { transform: scale(0.98); }
 
-        /* 進度條 */
-        .progress-dots {
-            display: flex; justify-content: center; gap: 10px; margin-bottom: 30px;
-        }
+        /* 進度點 */
+        .progress-dots { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         .dot { width: 6px; height: 6px; background: #333; border-radius: 50%; transition: 0.3s; }
         .dot.active { background: var(--primary-gold); transform: scale(1.2); }
+
+        /* 第三頁：總結資訊樣式 */
+        .success-icon { text-align: center; font-size: 50px; color: var(--primary-gold); margin-bottom: 20px; }
+        .success-title { text-align: center; font-size: 20px; color: #fff; margin-bottom: 20px; font-weight: bold; }
+        
+        .summary-box {
+            background: rgba(255,255,255,0.05);
+            padding: 20px; border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 25px;
+        }
+        .summary-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
+        .summary-item:last-child { border-bottom: none; margin-bottom: 0; }
+        .s-label { color: #888; }
+        .s-value { color: var(--primary-gold); text-align: right; max-width: 60%; }
+
+        .action-note { text-align: center; font-size: 12px; color: #666; margin-top: 15px; line-height: 1.5; }
+        .action-link { color: #888; text-decoration: underline; cursor: pointer; }
 
     </style>
 </head>
@@ -160,12 +154,13 @@
             <div class="logo-placeholder" style="display:none;"><i class="fa-solid fa-crown"></i></div>
         </div>
         <h1>Roni Fitness Factory</h1>
-        <div class="subtitle">Personal Training Reservation</div>
+        <div class="subtitle">健身工廠嘉義、民雄皆有服務</div>
     </header>
     
-    <div class="progress-dots">
+    <div class="progress-dots" id="dotsArea">
         <div class="dot active" id="dot1"></div>
         <div class="dot" id="dot2"></div>
+        <div class="dot" id="dot3"></div>
     </div>
 
     <form id="bookingForm">
@@ -208,7 +203,7 @@
             <div class="step" id="step2">
                 <div class="form-group">
                     <label>預約目的 / PURPOSE</label>
-                    <select name="purpose" required>
+                    <select name="purpose" id="inputPurpose" required>
                         <option value="入會體驗">參觀 / 入會體驗</option>
                         <option value="舊客預約">舊客預約 / 課程</option>
                         <option value="資料補齊">資料補齊</option>
@@ -218,10 +213,10 @@
 
                 <div class="form-group">
                     <label>預約日期 / DATE</label>
-                    <select name="dateSelect" id="dateSelect" required style="letter-spacing: 1px;">
-                        <option value="">讀取可預約時段...</option>
+                    <select name="dateSelect" id="dateSelect" required>
+                        <option value="">讀取中...</option>
                     </select>
-                    <div style="font-size:10px; color:#555; margin-top:5px;">*已自動為您過濾非營業日</div>
+                    <div style="font-size:10px; color:#555; margin-top:5px;">*僅顯示至 12/28 可預約時段</div>
                 </div>
 
                 <div class="form-group">
@@ -233,12 +228,37 @@
 
                 <div class="form-group">
                     <label>備註 / MEMO</label>
-                    <input type="text" name="memo" placeholder="如有特殊需求...">
+                    <input type="text" name="memo" id="inputMemo" placeholder="如有特殊需求...">
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> BACK</button>
-                    <button type="submit" class="primary" id="submitBtn">CONFIRM</button>
+                    <div class="btn-row">
+                        <button type="button" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> BACK</button>
+                        <button type="submit" class="primary" id="submitBtn">CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step" id="step3">
+                <div class="success-icon"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="success-title">恭喜您預約完成！</div>
+                
+                <div class="summary-box" id="summaryContent">
+                    </div>
+
+                <div class="btn-group">
+                    <button type="button" class="primary" onclick="copyToClipboard()">
+                        <i class="fa-regular fa-copy"></i> 複製預約資訊
+                    </button>
+                    
+                    <button type="button" onclick="addToCalendar()">
+                        <i class="fa-regular fa-calendar-plus"></i> 加入 Google 行事曆
+                    </button>
+                </div>
+
+                <div class="action-note">
+                    建議您將資訊複製並貼至 <b>TimeTree</b> 或設定手機鬧鐘提醒。<br>
+                    <span class="action-link" onclick="window.location.href=CONFIG.lineUrl">點擊這裡前往官方 Line 確認</span>
                 </div>
             </div>
         
@@ -248,61 +268,55 @@
 
 <script>
     // ==========================================
-    // ⚙️ Roni 的智慧班表設定 (請在這裡調整)
+    // ⚙️ Roni 系統設定
     // ==========================================
     const CONFIG = {
         discordUrl: "https://discordapp.com/api/webhooks/1449799845144559731/pTkKrAfV2NlUayLtBqN2nNLAXj5ktq_6cXsYwEgrZCWjCFw7j8dFscCG7kVmyrhAlLps",
         lineUrl: "https://line.me/ti/p/@781uizhn",
         googleScriptUrl: "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec",
         
-        // ⏰ 營業時間
-        startHour: 10, 
-        endHour: 22,
-
-        // 📅 休假設定 (100分的關鍵！)
-        // 0=週日, 1=週一 ... 6=週六
-        offWeekDays: [], // 例如每週日休假就填 [0]
+        startHour: 10,  
+        endHour: 22,    
         
-        // 🚫 特定休假日期 (格式 "YYYY-MM-DD")
-        blockedDates: ["2025-12-25", "2026-01-01"] 
+        // ⛔ 截止日期設定
+        limitDate: "2025-12-28",
+        limitTime: 18 // 12/28 當天只到 18:00
     };
     // ==========================================
 
     // --- 翻頁邏輯 ---
     function goToStep(step) {
-        // 第一頁檢查：沒填完不能去第二頁
+        // 第一頁驗證
         if (step === 2) {
-            const name = document.getElementById('inputName').value;
-            const phone = document.getElementById('inputPhone').value;
-            const factory = document.getElementById('inputFactory').value;
-            const gender = document.getElementById('inputGender').value;
-
-            if (!name || !phone || !factory || !gender) {
-                alert("請完整填寫貴賓資料，以便我們提供服務。");
-                return;
+            if(!document.getElementById('inputName').value || 
+               !document.getElementById('inputPhone').value || 
+               !document.getElementById('inputFactory').value) {
+                alert("請完整填寫資料"); return;
             }
         }
-
-        // 切換動畫
+        
+        // 切換顯示
         document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
         document.getElementById(`step${step}`).classList.add('active');
         
-        // 更新進度點
+        // 更新點點
         document.querySelectorAll('.dot').forEach(el => el.classList.remove('active'));
-        document.getElementById(`dot${step}`).classList.add('active');
+        if(step <= 3) document.getElementById(`dot${step}`).classList.add('active');
+
+        // 如果是第三頁，隱藏點點區域，讓畫面更乾淨
+        if(step === 3) document.getElementById('dotsArea').style.opacity = '0';
     }
 
-    // --- 智慧日期生成 ---
+    // --- 智慧日期與時間 (含 12/28 限制) ---
     const dateSelect = document.getElementById('dateSelect');
     const timeSelect = document.getElementById('timeSelect');
 
     function initCalendar() {
-        dateSelect.innerHTML = '<option value="">請選擇預約日期</option>';
+        dateSelect.innerHTML = '<option value="">請選擇日期</option>';
         const today = new Date();
         const weekDays = ['日','一','二','三','四','五','六'];
         
-        // 產生未來 21 天
-        for(let i=1; i<=21; i++) {
+        for(let i=1; i<=30; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() + i);
             
@@ -310,23 +324,32 @@
             const mm = (d.getMonth()+1).toString().padStart(2,'0');
             const dd = d.getDate().toString().padStart(2,'0');
             const dateStr = `${yyyy}-${mm}-${dd}`;
-            const dayOfWeek = d.getDay(); // 0-6
-
-            // ⛔ 過濾邏輯：如果是週休日 OR 特定休假日，就不顯示
-            if (CONFIG.offWeekDays.includes(dayOfWeek)) continue;
-            if (CONFIG.blockedDates.includes(dateStr)) continue;
+            
+            // ⛔ 硬性限制：超過 12/28 就不產生選項
+            if (dateStr > CONFIG.limitDate) break;
 
             const opt = document.createElement('option');
             opt.value = dateStr;
-            opt.innerText = `${mm}/${dd} (${weekDays[dayOfWeek]})`;
+            opt.innerText = `${mm}/${dd} (${weekDays[d.getDay()]})`;
             dateSelect.appendChild(opt);
         }
     }
     
-    // 初始化時間
     function initTime() {
+        const selectedDate = dateSelect.value;
         timeSelect.innerHTML = '<option value="">請選擇時段</option>';
-        for(let h = CONFIG.startHour; h <= CONFIG.endHour; h++) {
+        
+        if (!selectedDate) return;
+
+        // 決定當天的最後預約時間
+        let dayEndHour = CONFIG.endHour;
+        
+        // ⛔ 如果是 12/28，最晚只能約到 18:00
+        if (selectedDate === CONFIG.limitDate) {
+            dayEndHour = CONFIG.limitTime;
+        }
+
+        for(let h = CONFIG.startHour; h <= dayEndHour; h++) {
             const val = `${h.toString().padStart(2,'0')}:00`;
             const opt = document.createElement('option');
             opt.value = val; opt.innerText = val;
@@ -334,39 +357,43 @@
         }
     }
 
-    dateSelect.addEventListener('change', initTime); // 選了日期才跳時間
+    dateSelect.addEventListener('change', initTime);
     initCalendar();
 
     // --- 送出表單 ---
     const form = document.getElementById('bookingForm');
-    const btn = document.getElementById('submitBtn');
-
+    
     form.addEventListener('submit', e => {
         e.preventDefault();
+        const btn = document.getElementById('submitBtn');
         btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 處理中...';
+        btn.innerText = '處理中...';
 
         const formData = new FormData(form);
         const rawData = Object.fromEntries(formData.entries());
         const fullDateTime = `${rawData.dateSelect} ${rawData.timeSelect}`;
+        
+        // 1. 修正 Google Sheet 電話格式 (強制加 ' 避免 0 消失)
+        formData.set('phone', "'" + rawData.phone);
+        // 2. 加入完整時間
         formData.append("date", fullDateTime);
 
-        // Discord 卡片 V6
+        // 發送通知
         const discordPayload = {
             username: "Roni 預約管家",
             avatar_url: "https://cdn-icons-png.flaticon.com/512/2964/2964514.png", 
             embeds: [{
-                title: "⚜️ 尊榮預約通知 (New Booking)",
-                color: 13146734, // 香檳金
+                title: "⚜️ 預約成功通知",
+                color: 13146734,
                 fields: [
                     { name: "貴賓", value: `${rawData.name} (${rawData.gender})`, inline: true },
                     { name: "電話", value: rawData.phone, inline: true },
                     { name: "廠館", value: rawData.factory, inline: true },
-                    { name: "預約時間", value: fullDateTime, inline: false },
+                    { name: "時間", value: fullDateTime, inline: false },
                     { name: "目的", value: rawData.purpose, inline: true },
                     { name: "備註", value: rawData.memo || "無", inline: false }
                 ],
-                footer: { text: "Roni Fitness Factory | Royal Edition" },
+                footer: { text: "Roni Fitness Factory" },
                 timestamp: new Date().toISOString()
             }]
         };
@@ -377,12 +404,58 @@
             }).catch(()=>{}),
             fetch(CONFIG.googleScriptUrl, { method: 'POST', body: formData }).catch(()=>{})
         ]).then(() => {
-            setTimeout(() => {
-                alert(`預約成功！\n期待與您在 ${rawData.factory} 相見。`);
-                window.location.href = CONFIG.lineUrl;
-            }, 1000);
+            // 顯示第三頁 (成功頁)
+            renderSuccessPage(rawData, fullDateTime);
+            goToStep(3);
         });
     });
+
+    // --- 第三頁渲染與功能 ---
+    function renderSuccessPage(data, time) {
+        const box = document.getElementById('summaryContent');
+        box.innerHTML = `
+            <div class="summary-item"><span class="s-label">姓名</span><span class="s-value">${data.name}</span></div>
+            <div class="summary-item"><span class="s-label">電話</span><span class="s-value">${data.phone}</span></div>
+            <div class="summary-item"><span class="s-label">廠館</span><span class="s-value">${data.factory}</span></div>
+            <div class="summary-item"><span class="s-label">時間</span><span class="s-value">${time}</span></div>
+            <div class="summary-item"><span class="s-label">項目</span><span class="s-value">${data.purpose}</span></div>
+            <div class="summary-item"><span class="s-label">備註</span><span class="s-value">${data.memo || '-'}</span></div>
+        `;
+    }
+
+    // 複製功能
+    function copyToClipboard() {
+        const name = document.getElementById('inputName').value;
+        const time = `${document.getElementById('dateSelect').value} ${document.getElementById('timeSelect').value}`;
+        const factory = document.getElementById('inputFactory').value;
+        
+        const text = `【Roni 預約確認】\n姓名：${name}\n時間：${time}\n地點：${factory}\n\n已完成預約，期待與您見面！`;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            alert("✅ 資訊已複製！\n您可以貼到 TimeTree 或 Line 備忘錄。");
+        }).catch(() => {
+            alert("複製失敗，請手動截圖。");
+        });
+    }
+
+    // 加入 Google 行事曆
+    function addToCalendar() {
+        const title = "Roni 健體顧問諮詢";
+        const dateVal = document.getElementById('dateSelect').value.replace(/-/g, '');
+        const timeVal = document.getElementById('timeSelect').value.replace(/:/g, '');
+        
+        // 簡單計算結束時間 (預設 +1 小時)
+        let endHour = parseInt(timeVal.substring(0,2)) + 1;
+        let endTime = endHour.toString().padStart(2,'0') + "00";
+        
+        const start = `${dateVal}T${timeVal}00`;
+        const end = `${dateVal}T${endTime}00`;
+        const details = `預約廠館：${document.getElementById('inputFactory').value}`;
+        
+        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&details=${encodeURIComponent(details)}`;
+        
+        window.open(url, '_blank');
+    }
 </script>
 
 </body>
