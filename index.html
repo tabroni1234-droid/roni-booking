@@ -3,230 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Roni Fitness | 專業諮詢預約</title>
+    <title>Roni Fitness | 健體顧問預約諮詢</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- Roni 黑金極致美學 V2.0 --- */
+        /* Roni 極簡黑金美學 V3.0 Final */
         :root {
             --bg-color: #050505;
-            --card-bg: #121212;
-            --primary-gold: #C5A059;
-            --gold-gradient: linear-gradient(135deg, #C5A059 0%, #9A7B3A 100%);
-            --input-bg: #1f1f1f;
-            --text-gray: #B0B0B0;
+            --card-bg: #111111;
+            --primary-gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #E5C365 0%, #B38E2D 100%);
+            --text-gray: #888888;
+            --border-color: #2a2a2a;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--primary-gold);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0; padding: 20px;
-            display: flex; justify-content: center; align-items: center;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            margin: 0; padding: 20px 15px;
             min-height: 100vh;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .container {
-            width: 100%; max-width: 420px;
+            width: 100%; max-width: 400px;
             background: var(--card-bg);
             padding: 40px 30px;
-            box-shadow: 0 0 25px rgba(197, 160, 89, 0.15);
-            border-radius: 16px;
-            border: 1px solid #333;
-            box-sizing: border-box;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             position: relative;
+            overflow: hidden;
+        }
+
+        /* 頂部金線裝飾 */
+        .container::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gold-gradient);
         }
 
         header { text-align: center; margin-bottom: 35px; }
         
-        /* 頭像框：使用 icon 代替圖片，避免破圖 */
-        .icon-box {
-            width: 80px; height: 80px;
+        /* Logo 區域 */
+        .logo-area {
+            width: 70px; height: 70px;
             margin: 0 auto 15px;
-            background: #000;
             border: 2px solid var(--primary-gold);
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            font-size: 36px;
-            color: var(--primary-gold);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+            font-size: 30px; color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        h1 { 
-            font-size: 22px; margin: 0 0 8px 0; 
-            text-transform: uppercase; letter-spacing: 2px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        h1 {
+            font-size: 20px; letter-spacing: 3px;
+            margin: 0 0 5px 0; color: var(--primary-gold);
+            text-transform: uppercase;
         }
-
-        .subtitle { font-size: 12px; color: var(--text-gray); letter-spacing: 1.5px; margin: 0; }
-
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-size: 13px; color: #888; letter-spacing: 1px; }
         
+        .subtitle { font-size: 11px; color: var(--text-gray); letter-spacing: 2px; }
+
+        .form-group { margin-bottom: 18px; }
+        
+        label {
+            display: block; margin-bottom: 8px;
+            font-size: 13px; color: var(--primary-gold);
+            letter-spacing: 1px;
+        }
+
         input, select, textarea {
             width: 100%; padding: 14px;
-            background: var(--input-bg); 
-            border: 1px solid #333;
-            color: #fff; border-radius: 8px; 
-            box-sizing: border-box;
-            outline: none; font-size: 15px;
-            transition: 0.3s;
+            background: #1a1a1a;
+            border: 1px solid var(--border-color);
+            color: #fff; border-radius: 8px;
+            font-size: 15px; outline: none;
+            box-sizing: border-box; transition: 0.3s;
         }
-        
+
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary-gold);
-            box-shadow: 0 0 8px rgba(197, 160, 89, 0.2);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+            background: #222;
         }
 
-        /* 按鈕樣式 */
+        /* 提交按鈕 */
         button.submit-btn {
-            width: 100%; padding: 16px; margin-top: 15px;
+            width: 100%; padding: 16px; margin-top: 20px;
             background: var(--gold-gradient);
-            border: none; border-radius: 8px;
-            color: #000; font-weight: bold; font-size: 16px; 
-            letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: none; border-radius: 50px;
+            color: #000; font-weight: 700; font-size: 16px;
+            letter-spacing: 1.5px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
             transition: transform 0.2s;
         }
-        button.submit-btn:active { transform: scale(0.98); }
-        button.submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; }
+        
+        button.submit-btn:active { transform: scale(0.96); }
+        button.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        .note { margin-top: 25px; font-size: 12px; color: #555; text-align: center; line-height: 1.6; }
-
-        /* 隱藏元素 */
-        .hidden { display: none; }
+        .note { text-align: center; margin-top: 25px; font-size: 12px; color: #555; line-height: 1.6; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="icon-box">
+        <div class="logo-area">
             <i class="fa-solid fa-dumbbell"></i>
         </div>
         <h1>Roni Fitness</h1>
-        <p class="subtitle">PROFESSIONAL CONSULTANT</p>
+        <p class="subtitle">CONSULTANT RESERVATION</p>
     </header>
 
     <form id="bookingForm">
         <div class="form-group">
-            <label><i class="fa-solid fa-user"></i> 您的姓名 / Name</label>
-            <input type="text" name="name" required placeholder="請輸入姓名">
+            <label>您的姓名 / Name</label>
+            <input type="text" name="name" required placeholder="請輸入全名">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
+            <div class="form-group">
+                <label>聯絡電話 / Phone</label>
+                <input type="tel" name="phone" required placeholder="09xx..." maxlength="10">
+            </div>
+            <div class="form-group">
+                <label>性別</label>
+                <select name="gender" required>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-group">
-            <label><i class="fa-solid fa-venus-mars"></i> 性別 / Gender</label>
-            <select name="gender" required>
-                <option value="男">男 (Male)</option>
-                <option value="女">女 (Female)</option>
+            <label>諮詢廠館 / Location</label>
+            <select name="factory" required>
+                <option value="健身工廠民雄廠">健身工廠 - 民雄廠</option>
+                <option value="健身工廠嘉義廠">健身工廠 - 嘉義廠</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label><i class="fa-solid fa-phone"></i> 聯絡電話 / Phone</label>
-            <input type="tel" name="phone" required placeholder="09xx-xxx-xxx">
+            <label>預約日期與時間 / Date & Time</label>
+            <input type="datetime-local" name="date" required>
         </div>
 
         <div class="form-group">
-            <label><i class="fa-solid fa-calendar-days"></i> 預約日期 / Date</label>
-            <input type="datetime-local" name="date" required>
-        </div>
-        
-        <div class="form-group">
-            <label><i class="fa-solid fa-clipboard"></i> 預約目的 / Purpose</label>
+            <label>預約項目 / Purpose</label>
             <select name="purpose" required>
-                <option value="入會體驗">入會體驗</option>
-                <option value="舊客預約">舊客預約</option>
+                <option value="入會體驗">參觀 / 入會體驗</option>
+                <option value="舊客預約">舊客預約 / 課程</option>
                 <option value="資料補齊">資料補齊</option>
                 <option value="其他諮詢">其他諮詢</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label><i class="fa-solid fa-pen"></i> 備註 / Memo</label>
-            <textarea name="memo" rows="2" placeholder="如有特殊需求請填寫..."></textarea>
+            <label>備註 / Memo</label>
+            <textarea name="memo" rows="2" placeholder="如有特殊需求..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">確認並送出預約</button>
+        <button type="submit" class="submit-btn" id="submitBtn">立即預約</button>
     </form>
 
     <div class="note">
-        送出後將自動通知教練<br>並跳轉至官方 Line
+        送出後將自動跳轉至 Roni 官方 Line<br>
     </div>
 </div>
 
 <script>
     // ==========================================
-    // ⚠️ 設定區：請務必檢查這裡
+    // 系統設定區 (已自動填入您的資料)
     // ==========================================
     
-    // 1. 請填入您的 Discord Webhook 網址 (在引號內)
-    const DISCORD_WEBHOOK_URL = "您的_DISCORD_WEBHOOK_網址_貼在這裡";
+    // 1. 您的 Discord Webhook (通知發送到這裡)
+    const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1449799845144559731/pTkKrAfV2NlUayLtBqN2nNLAXj5ktq_6cXsYwEgrZCWjCFw7j8dFscCG7kVmyrhAlLps";
     
-    // 2. 這是您的 Line 官方帳號
+    // 2. 您的 Google Script (備份到試算表)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec";
+    
+    // 3. 您的 Line 連結 (跳轉目標)
     const LINE_REDIRECT_URL = "https://line.me/ti/p/@781uizhn";
 
-    // 3. 這是您的 Google Script (負責備份資料)
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec";
-
     // ==========================================
-    
+
     const form = document.getElementById('bookingForm');
     const btn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         
+        // 按鈕動畫
         btn.disabled = true;
-        btn.innerText = "資料傳送中...";
-        
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 預約處理中...';
+        btn.style.opacity = "0.8";
+
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        
-        // 準備 Discord 卡片內容
+
+        // 準備 Discord 通知內容 (漂亮卡片格式)
         const discordPayload = {
             username: "Roni 預約管家",
-            avatar_url: "https://cdn-icons-png.flaticon.com/512/2964/2964514.png", // 健身圖示
+            avatar_url: "https://cdn-icons-png.flaticon.com/512/2964/2964514.png", 
             embeds: [{
-                title: "✨ 新的預約通知 (New Booking)",
-                color: 12951641, // 金色
+                title: "💎 新的諮詢預約！",
+                color: 13931271, // 金色
                 fields: [
                     { name: "👤 姓名", value: `${data.name} (${data.gender})`, inline: true },
                     { name: "📞 電話", value: data.phone, inline: true },
-                    { name: "🎯 目的", value: data.purpose, inline: true },
+                    { name: "🏢 廠館", value: data.factory, inline: true },
                     { name: "📅 時間", value: data.date.replace("T", " "), inline: false },
+                    { name: "🎯 目的", value: data.purpose, inline: true },
                     { name: "📝 備註", value: data.memo || "無", inline: false }
                 ],
-                footer: { text: "來自 Roni Fitness 預約系統" },
+                footer: { text: "Roni Fitness Reservation System" },
                 timestamp: new Date().toISOString()
             }]
         };
 
-        // 同時發送請求
-        const sendToDiscord = fetch(DISCORD_WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(discordPayload)
-        }).catch(err => console.log("Discord error:", err)); // 忽略 Discord 錯誤，避免卡住
+        // 同時執行：發送 Discord + 發送 Google
+        Promise.all([
+            fetch(DISCORD_WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(discordPayload)
+            }).catch(e => console.log("Discord error")),
 
-        const sendToGoogle = fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: formData
-        }).catch(err => console.log("Google error:", err));
-
-        // 等待所有請求發送 (不管成功失敗都跳轉)
-        Promise.all([sendToDiscord, sendToGoogle]).then(() => {
-            alert("✅ 預約成功！我們已收到您的資訊。");
-            window.location.href = LINE_REDIRECT_URL;
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            }).catch(e => console.log("Google error"))
+        ]).then(() => {
+            // 成功後延遲 0.8 秒跳轉，讓使用者看到處理完成
+            setTimeout(() => {
+                alert("預約成功！\n即將為您跳轉至官方 Line。");
+                window.location.href = LINE_REDIRECT_URL;
+            }, 800);
         });
-        
-        // 設置超時保險 (防止網路卡住)
-        setTimeout(() => {
-            window.location.href = LINE_REDIRECT_URL;
-        }, 2000);
     });
 </script>
 
