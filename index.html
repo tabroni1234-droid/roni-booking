@@ -3,246 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Roni Fitness | 健體顧問預約諮詢</title>
+    <title>Roni Fitness Factory | 專屬預約</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Roni V5.0 Ultimate - 100分極致版 */
+        /* --- Roni V6.0 Royal Edition --- */
         :root {
-            --bg-color: #050505;
-            --card-bg: #141414;
-            --primary-gold: #D4AF37;
-            --gold-gradient: linear-gradient(135deg, #F0D582 0%, #B88A24 100%); /* 更具金屬感的漸層 */
-            --input-bg: rgba(255, 255, 255, 0.08); /* 微透質感 */
-            --border-color: #333;
+            --bg-color: #080808;
+            --card-bg: #101010;
+            --primary-gold: #C8AA6E; /* 香檳金，比亮金更優雅 */
+            --gold-gradient: linear-gradient(to right, #C8AA6E, #F0E68C, #C8AA6E);
+            --text-main: #E0E0E0;
+            --text-muted: #888888;
+            --line-color: #333;
         }
 
         body {
             background-color: var(--bg-color);
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
-            margin: 0; padding: 20px 15px;
+            color: var(--text-main);
+            font-family: 'Noto Serif TC', serif; /* 優雅宋體 */
+            margin: 0; padding: 20px;
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
         }
 
         .container {
-            width: 100%; max-width: 420px; /* 稍微加寬，更大氣 */
+            width: 100%; max-width: 400px;
             background: var(--card-bg);
-            padding: 45px 35px; /* 增加留白 */
-            border-radius: 24px;
-            border: 1px solid rgba(212, 175, 55, 0.15); /* 邊框自帶微金光 */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            padding: 50px 40px;
+            border: 1px solid rgba(200, 170, 110, 0.2); /* 極細金框 */
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
             position: relative;
             overflow: hidden;
+            /* 仿紙張質感 */
+            background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
         }
 
-        /* 頂部奢華流光 */
-        .container::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; 
-            background: var(--gold-gradient);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-
-        header { text-align: center; margin-bottom: 40px; }
-        
-        /* 頭像優化：增加立體感 */
-        .avatar-box {
-            width: 96px; height: 96px;
-            margin: 0 auto 18px;
-            border-radius: 50%;
-            border: 2px solid var(--primary-gold);
-            padding: 4px;
-            background: linear-gradient(180deg, #222, #000);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
-        }
-        
-        .avatar-box img {
-            width: 100%; height: 100%;
-            object-fit: cover; border-radius: 50%; display: block;
-        }
-        
-        .avatar-placeholder {
-            width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
-            background: #111; color: #444; font-size: 32px; border-radius: 50%;
-        }
-
-        h1 { 
-            font-size: 22px; letter-spacing: 2px; margin: 0 0 6px 0; 
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-        .subtitle { font-size: 12px; color: #888; letter-spacing: 3px; text-transform: uppercase; }
-
-        .form-group { margin-bottom: 24px; /* 增加間距，不擁擠 */ }
-        
-        label { 
-            display: block; margin-bottom: 10px; 
-            font-size: 14px; color: #ccc; letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        /* 💯 100分質感的輸入框 */
-        input, select, textarea {
-            width: 100%; 
-            padding: 16px 18px; /* 加大內距，打字更舒服 */
-            background: var(--input-bg); 
-            border: 1px solid var(--border-color);
-            color: #fff; 
-            border-radius: 12px; /* 更圓潤 */
-            font-size: 16px; /* 避免 iPhone 自動縮放 */
-            outline: none; 
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-            appearance: none; /* 移除原生醜樣式 */
-        }
-
-        /* 聚焦時的黃金光暈 */
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-gold);
-            background: rgba(212, 175, 55, 0.05);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-        }
-
-        /* Select 下拉箭頭美化 */
-        select {
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 18px center;
-            background-size: 16px;
-        }
-
-        .time-row { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 12px; }
-
-        /* 按鈕：更有按壓感與層次 */
-        button.submit-btn {
-            width: 100%; padding: 18px; margin-top: 25px;
-            background: var(--gold-gradient);
-            border: none; border-radius: 50px;
-            color: #000; font-weight: 800; font-size: 17px;
-            letter-spacing: 2px; cursor: pointer;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
-            transition: all 0.2s;
-            position: relative; overflow: hidden;
-        }
-        
-        /* 按鈕光澤動畫 */
-        button.submit-btn::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        /* 四角裝飾 (營造邀請函感) */
+        .corner {
+            position: absolute; width: 15px; height: 15px;
+            border: 1px solid var(--primary-gold);
             transition: 0.5s;
         }
-        button.submit-btn:hover::after { left: 100%; }
-        
-        button.submit-btn:active { transform: scale(0.97); box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2); }
-        button.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; filter: grayscale(1); }
+        .tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+        .bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+        .br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-        .note { text-align: center; margin-top: 30px; font-size: 13px; color: #666; line-height: 1.6; }
+        header { text-align: center; margin-bottom: 50px; position: relative; z-index: 2; }
+        
+        /* Logo 優化 */
+        .logo-box {
+            width: 80px; height: 80px; margin: 0 auto 20px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .logo-box img {
+            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+            border: 2px solid var(--primary-gold);
+            padding: 3px;
+        }
+        .logo-placeholder { font-size: 30px; color: var(--primary-gold); }
+
+        h1 {
+            font-family: 'Cinzel', serif; /* 羅馬雕刻字體 */
+            font-size: 20px; margin: 0 0 10px 0;
+            color: var(--primary-gold);
+            letter-spacing: 2px; line-height: 1.4;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 10px; color: var(--text-muted);
+            letter-spacing: 4px; text-transform: uppercase;
+            border-top: 1px solid #333; border-bottom: 1px solid #333;
+            display: inline-block; padding: 5px 15px;
+        }
+
+        /* 翻頁容器 */
+        .step-container { position: relative; min-height: 380px; }
+        .step {
+            position: absolute; top: 0; left: 0; width: 100%;
+            opacity: 0; transform: translateY(20px); pointer-events: none;
+            transition: all 0.5s ease-in-out;
+        }
+        .step.active {
+            opacity: 1; transform: translateY(0); pointer-events: all; position: relative;
+        }
+
+        /* 輸入欄位設計：底線式 (像填寫合約) */
+        .form-group { margin-bottom: 35px; position: relative; }
+        
+        label {
+            display: block; font-size: 13px; color: var(--primary-gold);
+            margin-bottom: 8px; letter-spacing: 1px;
+        }
+
+        input, select, textarea {
+            width: 100%; padding: 10px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #444; /* 只有底線 */
+            color: #fff; font-family: 'Noto Serif TC', serif;
+            font-size: 16px; border-radius: 0;
+            outline: none; transition: 0.4s;
+            appearance: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-bottom-color: var(--primary-gold);
+        }
+        
+        input::placeholder { color: #444; font-size: 14px; font-family: sans-serif; }
+
+        /* 按鈕設計 */
+        .btn-group { margin-top: 40px; display: flex; gap: 15px; }
+        
+        button {
+            flex: 1; padding: 15px;
+            background: transparent;
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
+            letter-spacing: 2px; cursor: pointer;
+            transition: 0.3s; text-transform: uppercase;
+        }
+
+        button.primary {
+            background: var(--primary-gold);
+            color: #000;
+        }
+
+        button:active { transform: scale(0.98); }
+
+        /* 進度條 */
+        .progress-dots {
+            display: flex; justify-content: center; gap: 10px; margin-bottom: 30px;
+        }
+        .dot { width: 6px; height: 6px; background: #333; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: var(--primary-gold); transform: scale(1.2); }
+
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+
     <header>
-        <div class="avatar-box">
-            <img src="avatar.png" alt="Roni" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="avatar-placeholder" style="display:none;"><i class="fa-solid fa-dumbbell"></i></div>
+        <div class="logo-box">
+            <img src="avatar.png" alt="Roni" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo-placeholder" style="display:none;"><i class="fa-solid fa-crown"></i></div>
         </div>
-        <h1>Roni Fitness</h1>
-        <p class="subtitle">健體顧問預約諮詢</p>
+        <h1>Roni Fitness Factory</h1>
+        <div class="subtitle">Personal Training Reservation</div>
     </header>
+    
+    <div class="progress-dots">
+        <div class="dot active" id="dot1"></div>
+        <div class="dot" id="dot2"></div>
+    </div>
 
     <form id="bookingForm">
-        <div class="form-group">
-            <label>您的姓名 / Name</label>
-            <input type="text" name="name" required placeholder="請輸入全名">
-        </div>
+        <div class="step-container">
+            
+            <div class="step active" id="step1">
+                <div class="form-group">
+                    <label>貴賓姓名 / NAME</label>
+                    <input type="text" name="name" id="inputName" required placeholder="請輸入您的全名">
+                </div>
+                
+                <div class="form-group">
+                    <label>性別 / GENDER</label>
+                    <select name="gender" id="inputGender" required>
+                        <option value="" disabled selected>請選擇</option>
+                        <option value="男">男 (Male)</option>
+                        <option value="女">女 (Female)</option>
+                    </select>
+                </div>
 
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
-            <div class="form-group">
-                <label>聯絡電話 / Phone</label>
-                <input type="tel" name="phone" required placeholder="09xx..." maxlength="10">
+                <div class="form-group">
+                    <label>聯絡電話 / PHONE</label>
+                    <input type="tel" name="phone" id="inputPhone" required placeholder="09xx-xxx-xxx" maxlength="10">
+                </div>
+
+                <div class="form-group">
+                    <label>諮詢廠館 / LOCATION</label>
+                    <select name="factory" id="inputFactory" required>
+                        <option value="" disabled selected>請選擇預約廠館</option>
+                        <option value="健身工廠民雄廠">健身工廠 - 民雄廠</option>
+                        <option value="健身工廠嘉義廠">健身工廠 - 嘉義廠</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="primary" onclick="goToStep(2)">NEXT STEP <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>性別</label>
-                <select name="gender" required>
-                    <option value="男">男</option>
-                    <option value="女">女</option>
-                </select>
+
+            <div class="step" id="step2">
+                <div class="form-group">
+                    <label>預約目的 / PURPOSE</label>
+                    <select name="purpose" required>
+                        <option value="入會體驗">參觀 / 入會體驗</option>
+                        <option value="舊客預約">舊客預約 / 課程</option>
+                        <option value="資料補齊">資料補齊</option>
+                        <option value="其他諮詢">其他諮詢</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>預約日期 / DATE</label>
+                    <select name="dateSelect" id="dateSelect" required style="letter-spacing: 1px;">
+                        <option value="">讀取可預約時段...</option>
+                    </select>
+                    <div style="font-size:10px; color:#555; margin-top:5px;">*已自動為您過濾非營業日</div>
+                </div>
+
+                <div class="form-group">
+                    <label>預約時段 / TIME</label>
+                    <select name="timeSelect" id="timeSelect" required>
+                        <option value="">請先選擇日期</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>備註 / MEMO</label>
+                    <input type="text" name="memo" placeholder="如有特殊需求...">
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" onclick="goToStep(1)"><i class="fa-solid fa-arrow-left"></i> BACK</button>
+                    <button type="submit" class="primary" id="submitBtn">CONFIRM</button>
+                </div>
             </div>
+        
         </div>
-
-        <div class="form-group">
-            <label>諮詢廠館 / Location</label>
-            <select name="factory" required>
-                <option value="健身工廠民雄廠">健身工廠 - 民雄廠</option>
-                <option value="健身工廠嘉義廠">健身工廠 - 嘉義廠</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>預約日期與時段 / Date & Time</label>
-            <div class="time-row">
-                <select name="dateSelect" id="dateSelect" required>
-                    <option value="">選擇日期</option>
-                </select>
-                <select name="timeSelect" id="timeSelect" required>
-                    <option value="">時段</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>預約項目 / Purpose</label>
-            <select name="purpose" required>
-                <option value="入會體驗">參觀 / 入會體驗</option>
-                <option value="舊客預約">舊客預約 / 課程</option>
-                <option value="資料補齊">資料補齊</option>
-                <option value="其他諮詢">其他諮詢</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>備註 / Memo</label>
-            <textarea name="memo" rows="2" placeholder="如有特殊需求..."></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">立即預約諮詢</button>
     </form>
-
-    <div class="note">
-        送出後將自動通知顧問<br>並跳轉至官方 Line 確認
-    </div>
 </div>
 
 <script>
     // ==========================================
-    // 系統配置 (已填入您的資料)
+    // ⚙️ Roni 的智慧班表設定 (請在這裡調整)
     // ==========================================
     const CONFIG = {
         discordUrl: "https://discordapp.com/api/webhooks/1449799845144559731/pTkKrAfV2NlUayLtBqN2nNLAXj5ktq_6cXsYwEgrZCWjCFw7j8dFscCG7kVmyrhAlLps",
-        googleScriptUrl: "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec",
         lineUrl: "https://line.me/ti/p/@781uizhn",
-        startHour: 10,
-        endHour: 22
-    };
+        googleScriptUrl: "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec",
+        
+        // ⏰ 營業時間
+        startHour: 10, 
+        endHour: 22,
 
-    // 自動產生日期與時間
+        // 📅 休假設定 (100分的關鍵！)
+        // 0=週日, 1=週一 ... 6=週六
+        offWeekDays: [], // 例如每週日休假就填 [0]
+        
+        // 🚫 特定休假日期 (格式 "YYYY-MM-DD")
+        blockedDates: ["2025-12-25", "2026-01-01"] 
+    };
+    // ==========================================
+
+    // --- 翻頁邏輯 ---
+    function goToStep(step) {
+        // 第一頁檢查：沒填完不能去第二頁
+        if (step === 2) {
+            const name = document.getElementById('inputName').value;
+            const phone = document.getElementById('inputPhone').value;
+            const factory = document.getElementById('inputFactory').value;
+            const gender = document.getElementById('inputGender').value;
+
+            if (!name || !phone || !factory || !gender) {
+                alert("請完整填寫貴賓資料，以便我們提供服務。");
+                return;
+            }
+        }
+
+        // 切換動畫
+        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+        document.getElementById(`step${step}`).classList.add('active');
+        
+        // 更新進度點
+        document.querySelectorAll('.dot').forEach(el => el.classList.remove('active'));
+        document.getElementById(`dot${step}`).classList.add('active');
+    }
+
+    // --- 智慧日期生成 ---
     const dateSelect = document.getElementById('dateSelect');
     const timeSelect = document.getElementById('timeSelect');
-    
-    function initDateTime() {
+
+    function initCalendar() {
+        dateSelect.innerHTML = '<option value="">請選擇預約日期</option>';
         const today = new Date();
-        for(let i=0; i<14; i++) {
+        const weekDays = ['日','一','二','三','四','五','六'];
+        
+        // 產生未來 21 天
+        for(let i=1; i<=21; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() + i);
-            const val = d.toISOString().split('T')[0];
-            const text = `${d.getMonth()+1}/${d.getDate()} (${['日','一','二','三','四','五','六'][d.getDay()]})`;
+            
+            const yyyy = d.getFullYear();
+            const mm = (d.getMonth()+1).toString().padStart(2,'0');
+            const dd = d.getDate().toString().padStart(2,'0');
+            const dateStr = `${yyyy}-${mm}-${dd}`;
+            const dayOfWeek = d.getDay(); // 0-6
+
+            // ⛔ 過濾邏輯：如果是週休日 OR 特定休假日，就不顯示
+            if (CONFIG.offWeekDays.includes(dayOfWeek)) continue;
+            if (CONFIG.blockedDates.includes(dateStr)) continue;
+
             const opt = document.createElement('option');
-            opt.value = val; opt.innerText = text;
+            opt.value = dateStr;
+            opt.innerText = `${mm}/${dd} (${weekDays[dayOfWeek]})`;
             dateSelect.appendChild(opt);
         }
+    }
+    
+    // 初始化時間
+    function initTime() {
+        timeSelect.innerHTML = '<option value="">請選擇時段</option>';
         for(let h = CONFIG.startHour; h <= CONFIG.endHour; h++) {
             const val = `${h.toString().padStart(2,'0')}:00`;
             const opt = document.createElement('option');
@@ -250,37 +333,40 @@
             timeSelect.appendChild(opt);
         }
     }
-    initDateTime();
 
+    dateSelect.addEventListener('change', initTime); // 選了日期才跳時間
+    initCalendar();
+
+    // --- 送出表單 ---
     const form = document.getElementById('bookingForm');
     const btn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', e => {
         e.preventDefault();
         btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 預約處理中...';
-        btn.style.opacity = "0.8";
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 處理中...';
 
         const formData = new FormData(form);
         const rawData = Object.fromEntries(formData.entries());
         const fullDateTime = `${rawData.dateSelect} ${rawData.timeSelect}`;
-        formData.append("date", fullDateTime); // 修正日期格式供 Google Sheet 使用
+        formData.append("date", fullDateTime);
 
+        // Discord 卡片 V6
         const discordPayload = {
             username: "Roni 預約管家",
             avatar_url: "https://cdn-icons-png.flaticon.com/512/2964/2964514.png", 
             embeds: [{
-                title: "💎 健體顧問預約通知",
-                color: 13931271, 
+                title: "⚜️ 尊榮預約通知 (New Booking)",
+                color: 13146734, // 香檳金
                 fields: [
-                    { name: "👤 姓名", value: `${rawData.name} (${rawData.gender})`, inline: true },
-                    { name: "📞 電話", value: rawData.phone, inline: true },
-                    { name: "🏢 廠館", value: rawData.factory, inline: true },
-                    { name: "📅 時間", value: fullDateTime, inline: false },
-                    { name: "🎯 目的", value: rawData.purpose, inline: true },
-                    { name: "📝 備註", value: rawData.memo || "無", inline: false }
+                    { name: "貴賓", value: `${rawData.name} (${rawData.gender})`, inline: true },
+                    { name: "電話", value: rawData.phone, inline: true },
+                    { name: "廠館", value: rawData.factory, inline: true },
+                    { name: "預約時間", value: fullDateTime, inline: false },
+                    { name: "目的", value: rawData.purpose, inline: true },
+                    { name: "備註", value: rawData.memo || "無", inline: false }
                 ],
-                footer: { text: "Roni Fitness System" },
+                footer: { text: "Roni Fitness Factory | Royal Edition" },
                 timestamp: new Date().toISOString()
             }]
         };
@@ -292,6 +378,7 @@
             fetch(CONFIG.googleScriptUrl, { method: 'POST', body: formData }).catch(()=>{})
         ]).then(() => {
             setTimeout(() => {
+                alert(`預約成功！\n期待與您在 ${rawData.factory} 相見。`);
                 window.location.href = CONFIG.lineUrl;
             }, 1000);
         });
