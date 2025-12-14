@@ -1,116 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roni Fitness | 專業諮詢預約</title>
-    <style>
-        /* Roni 黑金美學風格 */
-        :root {
-            --bg-color: #0a0a0a;
-            --card-bg: #141414;
-            --primary-gold: #D4AF37;
-            --input-bg: #1f1f1f;
-            --text-gray: #B0B0B0;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--primary-gold);
-            font-family: sans-serif;
-            margin: 0; padding: 0;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            width: 100%; max-width: 420px;
-            background: var(--card-bg);
-            padding: 40px 30px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-        h1 { text-align: center; letter-spacing: 2px; margin: 0 0 5px 0; text-transform: uppercase; }
-        .subtitle { text-align: center; font-size: 12px; color: var(--text-gray); margin-bottom: 30px; letter-spacing: 1px; }
-        
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-gray); }
-        input, textarea {
-            width: 100%; padding: 12px;
-            background: var(--input-bg); border: 1px solid #333;
-            color: #fff; border-radius: 4px; box-sizing: border-box;
-            outline: none; transition: 0.3s;
-        }
-        input:focus, textarea:focus { border-color: var(--primary-gold); }
-        
-        button.submit-btn {
-            width: 100%; padding: 15px; margin-top: 10px;
-            background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
-            border: none; border-radius: 4px;
-            color: #000; font-weight: bold; font-size: 16px; cursor: pointer;
-        }
-        button.submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; }
-        .note { text-align: center; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.6; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Roni Fitness | 專業諮詢預約</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Roni 黑金美學 - 修正優化版 */
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --primary-gold: #C5A059; /* 您喜歡的經典金 */
+            --gold-gradient: linear-gradient(135deg, #C5A059 0%, #9A7B3A 100%);
+            --input-bg: #1f1f1f;
+            --text-gray: #B0B0B0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-gold);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%; max-width: 420px;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.15); /* 金色微光 */
+            border-radius: 16px;
+            border: 1px solid #333;
+            box-sizing: border-box;
+        }
+
+        header { text-align: center; margin-bottom: 35px; }
+        
+        /* 修正圖片破圖問題，改用圓形圖示 */
+        .icon-box {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px;
+            background: #000;
+            border: 2px solid var(--primary-gold);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 36px;
+            color: var(--primary-gold);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+        }
+
+        h1 { 
+            font-size: 22px; margin: 0 0 8px 0; 
+            text-transform: uppercase; letter-spacing: 2px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* 金屬漸層文字 */
+        }
+
+        .subtitle { font-size: 12px; color: var(--text-gray); letter-spacing: 1.5px; margin: 0; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: #888; letter-spacing: 1px; }
+        
+        input, select, textarea {
+            width: 100%; padding: 14px;
+            background: var(--input-bg); 
+            border: 1px solid #333;
+            color: #fff; border-radius: 8px; 
+            box-sizing: border-box;
+            outline: none; font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 8px rgba(197, 160, 89, 0.2);
+        }
+
+        button.submit-btn {
+            width: 100%; padding: 16px; margin-top: 15px;
+            background: var(--gold-gradient);
+            border: none; border-radius: 8px;
+            color: #000; font-weight: bold; font-size: 16px; 
+            letter-spacing: 1px; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        button.submit-btn:active { transform: scale(0.98); }
+        button.submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; }
+
+        .note { margin-top: 25px; font-size: 12px; color: #555; text-align: center; line-height: 1.6; }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Booking</h1>
-    <p class="subtitle">RONI FITNESS CONSULTANT</p>
+    <header>
+        <div class="icon-box">
+            <i class="fa-solid fa-dumbbell"></i>
+        </div>
+        <h1>Roni Fitness</h1>
+        <p class="subtitle">PROFESSIONAL CONSULTANT</p>
+    </header>
 
-    <form id="bookingForm">
-        <div class="form-group">
-            <label>您的姓名 / Name</label>
-            <input type="text" name="name" required placeholder="請輸入姓名">
-        </div>
-        <div class="form-group">
-            <label>聯絡電話 / Phone</label>
-            <input type="tel" name="phone" required placeholder="09xx-xxx-xxx">
-        </div>
-        <div class="form-group">
-            <label>預約日期與時間 / Date</label>
-            <input type="datetime-local" name="date" required>
-        </div>
-        <div class="form-group">
-            <label>備註 / Memo</label>
-            <textarea name="memo" rows="3" placeholder="參觀、體驗或是其他需求..."></textarea>
-        </div>
+    <form id="bookingForm">
+        <div class="form-group">
+            <label><i class="fa-solid fa-user"></i> 您的姓名 / Name</label>
+            <input type="text" name="name" required placeholder="請輸入姓名">
+        </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">確認預約</button>
-    </form>
-
-    <div class="note">
-        送出後將自動跳轉至官方 Line<br>請傳送貼圖讓我們知道您已預約
-    </div>
-</div>
-
-<script>
-    // ⚠️ 這裡填入您剛剛複製的 Google 部署網址 (Web App URL)
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec'; 
-
-    // ⚠️ 這裡填入您的 Line 官方帳號連結
-    const lineRedirectURL = 'https://line.me/ti/p/@781uizhn';
-
-    const form = document.getElementById('bookingForm');
-    const btn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        btn.disabled = true;
-        btn.innerText = "傳送資料中...";
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                alert("預約成功！我們已收到您的資訊。");
-                window.location.href = lineRedirectURL;
-            })
-            .catch(error => {
-                alert("發生錯誤，請截圖私訊我們。");
-                btn.disabled = false;
-                btn.innerText = "確認預約";
-            });
-    });
-</script>
-
-</body>
-</html>
+        <div class="form-group">
+            <label><i class="fa-solid fa-phone"></i> 聯絡電話 / Phone</
