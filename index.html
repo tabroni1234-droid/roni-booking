@@ -1,193 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>Roni｜健體顧問預約系統</title>
-    <meta property="og:title" content="Roni｜健體顧問預約系統">
-    <meta property="og:description" content="專屬一對一健體顧問，點擊立即預約諮詢時段。">
-    <meta property="og:image" content="https://ronifitnessfactory.netlify.app/avatar.png"> <meta property="og:url" content="https://ronifitnessfactory.netlify.app/">
-    <meta property="og:type" content="website">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- V15.0 完美同步版 --- */
-        :root {
-            --bg-color: #050505;
-            --card-bg: #121212;
-            --primary-gold: #C5A059;
-            --gold-gradient: linear-gradient(135deg, #C5A059 0%, #9A7B3A 100%);
-            --input-bg: #1a1a1a;
-            --border-color: #333;
-        }
-        body { background-color: var(--bg-color); color: #fff; font-family: -apple-system, sans-serif; margin: 0; padding: 20px 15px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-        .container { width: 100%; max-width: 480px; background: var(--card-bg); padding: 30px 25px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 40px; position: relative; z-index: 10; }
-        header { text-align: center; margin-bottom: 30px; }
-        .avatar-box { width: 110px; height: 110px; margin: 0 auto 20px; border-radius: 50%; border: 2px solid var(--primary-gold); padding: 4px; background: #000; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-        .avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .fallback-icon { display: none; font-size: 50px; color: #444; }
-        h1 { color: var(--primary-gold); font-size: 22px; margin: 0 0 5px 0; letter-spacing: 1px; }
-        p.subtitle { color: #888; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--primary-gold); }
-        input, select { width: 100%; padding: 12px 15px; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 16px; outline: none; box-sizing: border-box; -webkit-appearance: none; }
-        select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C5A059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 15px center; background-size: 16px; }
-        input:focus, select:focus { border-color: var(--primary-gold); box-shadow: 0 0 0 1px var(--primary-gold); }
-        .time-area { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-height: 250px; overflow-y: auto; padding: 2px; min-height: 60px; }
-        .time-chip { background: #1a1a1a; border: 1px solid #333; padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; }
-        .time-chip.selected { background: var(--gold-gradient); border-color: var(--primary-gold); color: #000; font-weight: bold; }
-        .time-chip.selected span { color: #000 !important; }
-        .time-chip.disabled { opacity: 0.3; pointer-events: none; text-decoration: line-through; }
-        .btn-submit { width: 100%; padding: 16px; margin-top: 30px; background: var(--gold-gradient) !important; color: #000 !important; font-weight: bold; font-size: 16px; border: none; border-radius: 8px; cursor: pointer; -webkit-appearance: none; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 999; }
-        .modal-box { background: #1a1a1a; width: 85%; max-width: 350px; padding: 25px; border-radius: 12px; border: 1px solid var(--primary-gold); text-align: center; }
-        .summary-text { text-align: left; background: #000; padding: 15px; border-radius: 6px; margin: 15px 0; font-size: 14px; line-height: 1.6; color: #ccc; }
-        .success-icon { font-size: 50px; color: var(--primary-gold); margin-bottom: 15px; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        .spinner { border: 3px solid rgba(255,255,255,0.1); border-radius: 50%; border-top: 3px solid var(--primary-gold); width: 20px; height: 20px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roni Fitness | 專業諮詢預約</title>
+    <style>
+        /* Roni 黑金美學風格 */
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #141414;
+            --primary-gold: #D4AF37;
+            --input-bg: #1f1f1f;
+            --text-gray: #B0B0B0;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-gold);
+            font-family: sans-serif;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%; max-width: 420px;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        h1 { text-align: center; letter-spacing: 2px; margin: 0 0 5px 0; text-transform: uppercase; }
+        .subtitle { text-align: center; font-size: 12px; color: var(--text-gray); margin-bottom: 30px; letter-spacing: 1px; }
+        
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--text-gray); }
+        input, textarea {
+            width: 100%; padding: 12px;
+            background: var(--input-bg); border: 1px solid #333;
+            color: #fff; border-radius: 4px; box-sizing: border-box;
+            outline: none; transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--primary-gold); }
+        
+        button.submit-btn {
+            width: 100%; padding: 15px; margin-top: 10px;
+            background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+            border: none; border-radius: 4px;
+            color: #000; font-weight: bold; font-size: 16px; cursor: pointer;
+        }
+        button.submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; }
+        .note { text-align: center; margin-top: 20px; font-size: 12px; color: #666; line-height: 1.6; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="avatar-box">
-                <img src="avatar.png" alt="Roni" onerror="this.style.display='none'; document.querySelector('.fallback-icon').style.display='block';">
-                <i class="fa-solid fa-user fallback-icon"></i>
-            </div>
-            <h1>Roni｜健體顧問預約系統</h1>
-            <p class="subtitle">Fitness Consultant Reservation</p>
-        </header>
-        <form id="bookingForm">
-            <div class="form-group"><label>您的姓名 (Name)</label><input type="text" id="name" placeholder="請輸入全名" required></div>
-            <div class="form-group"><label>性別 (Gender)</label><select id="gender" required><option value="">請點擊選擇</option><option value="男">男 (Male)</option><option value="女">女 (Female)</option></select></div>
-            <div class="form-group"><label>手機號碼 (Phone)</label><input type="tel" id="phone" placeholder="09xxxxxxxx" maxlength="10" required></div>
-            <div class="form-group"><label>預約目的 (Purpose)</label><select id="purpose" required><option value="">請點擊選擇</option><option value="入會體驗">入會體驗</option><option value="舊客預約">舊客預約</option><option value="資料補齊">資料補齊</option></select></div>
-            <div class="form-group"><label>選擇廠館 (Factory)</label><select id="factory" required><option value="">請點擊選擇</option><option value="健身工廠民雄廠">健身工廠民雄廠</option><option value="健身工廠嘉義廠">健身工廠嘉義廠</option></select></div>
-            <div class="form-group"><label>預約時段 (Time)</label><input type="hidden" id="realTimeInput" name="timeSlot"><div class="time-area" id="timeChipsArea"><div class="spinner"></div><div style="text-align:center; font-size:12px; color:#666;">同步雲端資料中...</div></div></div>
-            <button type="submit" id="submitBtn" class="btn-submit">確認並預約</button>
-        </form>
-    </div>
-    <div id="confirmModal" class="modal">
-        <div class="modal-box">
-            <div id="modalContent">
-                <h3 style="color:var(--primary-gold);">確認資訊</h3>
-                <div class="summary-text" id="summaryContent"></div>
-                <div style="display:flex; gap:10px;">
-                    <button type="button" onclick="closeModal('confirmModal')" style="flex:1; padding:10px; background:#333; color:#fff; border:none; border-radius:6px;">修改</button>
-                    <button type="button" onclick="finalSubmit()" id="finalBtn" style="flex:1; padding:10px; background:var(--primary-gold); color:#000; border:none; border-radius:6px; font-weight:bold;">送出</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        // ==========================================
-        // ⚠️ 你的 Google Apps Script 網址 (已填入)
-        // ==========================================
-        const API_URL = "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec"; 
 
-        const WORK_SCHEDULE = [
-            "2025-12-16 10:00", "2025-12-16 11:00", "2025-12-16 12:00", "2025-12-16 13:00", "2025-12-16 14:00", "2025-12-16 15:00", "2025-12-16 16:00", "2025-12-16 17:00", "2025-12-16 18:00",
-            "2025-12-17 10:00", "2025-12-17 11:00", "2025-12-17 12:00", "2025-12-17 13:00", "2025-12-17 14:00", "2025-12-17 15:00", "2025-12-17 16:00", "2025-12-17 17:00", "2025-12-17 18:00",
-            "2025-12-18 10:00", "2025-12-18 11:00", "2025-12-18 12:00", "2025-12-18 13:00", "2025-12-18 14:00", "2025-12-18 15:00", "2025-12-18 16:00", "2025-12-18 17:00", "2025-12-18 18:00",
-            "2025-12-19 10:00", "2025-12-19 11:00", "2025-12-19 12:00", "2025-12-19 13:00", "2025-12-19 14:00", "2025-12-19 15:00", "2025-12-19 16:00", "2025-12-19 17:00", "2025-12-19 18:00",
-            "2025-12-20 10:00", "2025-12-20 11:00", "2025-12-20 12:00", "2025-12-20 13:00", "2025-12-20 14:00", "2025-12-20 15:00", "2025-12-20 16:00", "2025-12-20 17:00", "2025-12-20 18:00",
-            "2025-12-21 10:00", "2025-12-21 11:00", "2025-12-21 12:00", "2025-12-21 13:00", "2025-12-21 14:00", "2025-12-21 15:00", "2025-12-21 16:00", "2025-12-21 17:00", "2025-12-21 18:00",
-            "2025-12-23 14:00", "2025-12-23 15:00", "2025-12-23 16:00", "2025-12-23 17:00", "2025-12-23 18:00", "2025-12-23 19:00", "2025-12-23 20:00", "2025-12-23 21:00", "2025-12-23 22:00",
-            "2025-12-24 12:00", "2025-12-24 13:00", "2025-12-24 14:00", "2025-12-24 15:00", "2025-12-24 16:00", "2025-12-24 17:00", "2025-12-24 18:00", "2025-12-24 19:00", "2025-12-24 20:00",
-            "2025-12-25 10:00", "2025-12-25 11:00", "2025-12-25 12:00", "2025-12-25 13:00", "2025-12-25 14:00", "2025-12-25 15:00", "2025-12-25 16:00", "2025-12-25 17:00", "2025-12-25 18:00",
-            "2025-12-26 10:00", "2025-12-26 11:00", "2025-12-26 12:00", "2025-12-26 13:00", "2025-12-26 14:00", "2025-12-26 15:00", "2025-12-26 16:00", "2025-12-26 17:00", "2025-12-26 18:00",
-            "2025-12-27 10:00", "2025-12-27 11:00", "2025-12-27 12:00", "2025-12-27 13:00", "2025-12-27 14:00", "2025-12-27 15:00", "2025-12-27 16:00", "2025-12-27 17:00", "2025-12-27 18:00",
-            "2025-12-28 10:00", "2025-12-28 11:00", "2025-12-28 12:00", "2025-12-28 13:00", "2025-12-28 14:00", "2025-12-28 15:00", "2025-12-28 16:00", "2025-12-28 17:00", "2025-12-28 18:00"
-        ];
+<div class="container">
+    <h1>Booking</h1>
+    <p class="subtitle">RONI FITNESS CONSULTANT</p>
 
-        window.onload = function() { fetchBookedSlots(); };
+    <form id="bookingForm">
+        <div class="form-group">
+            <label>您的姓名 / Name</label>
+            <input type="text" name="name" required placeholder="請輸入姓名">
+        </div>
+        <div class="form-group">
+            <label>聯絡電話 / Phone</label>
+            <input type="tel" name="phone" required placeholder="09xx-xxx-xxx">
+        </div>
+        <div class="form-group">
+            <label>預約日期與時間 / Date</label>
+            <input type="datetime-local" name="date" required>
+        </div>
+        <div class="form-group">
+            <label>備註 / Memo</label>
+            <textarea name="memo" rows="3" placeholder="參觀、體驗或是其他需求..."></textarea>
+        </div>
 
-        function fetchBookedSlots() {
-            fetch(API_URL)
-            .then(res => res.json())
-            .then(bookedList => {
-                // 資料清洗：確保只比對字串，忽略空白
-                const cleanList = bookedList.map(item => String(item).trim());
-                renderTimeChips(cleanList);
-            })
-            .catch(err => { renderTimeChips([]); });
-        }
+        <button type="submit" class="submit-btn" id="submitBtn">確認預約</button>
+    </form>
 
-        function renderTimeChips(bookedList) {
-            const area = document.getElementById('timeChipsArea');
-            area.innerHTML = '';
-            const now = new Date();
-            let count = 0;
-            WORK_SCHEDULE.forEach(t => {
-                const dateObj = new Date(t);
-                if (dateObj <= now) return;
-                
-                // 這裡會比對 Google 傳回來的字串 vs 我們的班表字串
-                const isBooked = Array.isArray(bookedList) && bookedList.includes(t);
-                const showStr = formatTime(dateObj);
-                
-                let chip = document.createElement('div');
-                chip.className = 'time-chip';
-                if(isBooked) {
-                    chip.classList.add('disabled');
-                    chip.innerHTML = `<span style="display:block; font-size:12px; color:#666;">${showStr.split(' ')[0]}</span><span style="font-size:14px; color:#555;">已預約</span>`;
-                } else {
-                    chip.innerHTML = `<span style="display:block; font-size:12px; color:#aaa;">${showStr.split(' ')[0]} ${showStr.split(' ')[1]}</span><span style="font-size:16px; color:#fff;">${showStr.split(' ')[2]}</span>`;
-                    chip.onclick = () => selectChip(chip, t);
-                    count++;
-                }
-                area.appendChild(chip);
-            });
-            if(count === 0) area.innerHTML = '<div style="grid-column:span 2; text-align:center; color:#666; padding:20px;">目前無可預約時段</div>';
-        }
+    <div class="note">
+        送出後將自動跳轉至官方 Line<br>請傳送貼圖讓我們知道您已預約
+    </div>
+</div>
 
-        function selectChip(el, val) {
-            document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            document.getElementById('realTimeInput').value = val;
-        }
+<script>
+    // ⚠️ 這裡填入您剛剛複製的 Google 部署網址 (Web App URL)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec'; 
 
-        function formatTime(d) {
-            const days = ["日","一","二","三","四","五","六"];
-            const MM = d.getMonth()+1;
-            const DD = d.getDate();
-            const W = days[d.getDay()];
-            const HH = String(d.getHours()).padStart(2,'0');
-            return `${MM}/${DD} (${W}) ${HH}:00`;
-        }
+    // ⚠️ 這裡填入您的 Line 官方帳號連結
+    const lineRedirectURL = 'https://line.me/ti/p/@781uizhn';
 
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const fd = { name: document.getElementById('name').value, gender: document.getElementById('gender').value, phone: document.getElementById('phone').value, purpose: document.getElementById('purpose').value, factory: document.getElementById('factory').value, time: document.getElementById('realTimeInput').value };
-            if(!/^\d{10}$/.test(fd.phone)) return alert("手機號碼格式錯誤 (需10碼)");
-            if(!fd.time) return alert("請選擇預約時段");
-            const showTime = formatTime(new Date(fd.time));
-            window.tempData = { ...fd, showTime };
-            document.getElementById('summaryContent').innerText = `姓名：${fd.name}\n性別：${fd.gender}\n電話：${fd.phone}\n目的：${fd.purpose}\n廠館：${fd.factory}\n時間：${showTime}`;
-            document.getElementById('confirmModal').style.display = 'flex';
-        });
+    const form = document.getElementById('bookingForm');
+    const btn = document.getElementById('submitBtn');
 
-        function finalSubmit() {
-            const btn = document.getElementById('finalBtn');
-            btn.innerText = "處理中...";
-            btn.disabled = true;
-            const data = window.tempData;
-            fetch(API_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) });
-            setTimeout(() => { showSuccessAndRedirect(data); }, 800);
-        }
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.innerText = "傳送資料中...";
 
-        function showSuccessAndRedirect(data) {
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = `<div style="text-align:center; padding:20px;"><i class="fa-solid fa-circle-check success-icon"></i><h3 style="color:#C5A059; margin:10px 0;">已完成預約</h3><p style="color:#888; font-size:14px;">資料已傳送，即將跳轉 LINE...</p></div>`;
-            const text = `【Roni 預約】\n👤 ${data.name} (${data.gender})\n📱 ${data.phone}\n🎯 ${data.purpose}\n🏢 ${data.factory}\n📅 ${data.showTime}`;
-            navigator.clipboard.writeText(text).catch(()=>{});
-            setTimeout(() => { window.location.href = 'https://line.me/ti/p/@781uizhn'; }, 2000);
-        }
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert("預約成功！我們已收到您的資訊。");
+                window.location.href = lineRedirectURL;
+            })
+            .catch(error => {
+                alert("發生錯誤，請截圖私訊我們。");
+                btn.disabled = false;
+                btn.innerText = "確認預約";
+            });
+    });
+</script>
 
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        window.onclick = function(e) { if(e.target.classList.contains('modal')) e.target.style.display = 'none'; }
-    </script>
 </body>
 </html>
