@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Roni V8.0 Intelligence Edition --- */
+        /* --- Roni V9.0 Intuitive Royal Edition --- */
         :root {
             --bg-color: #080808;
             --card-bg: #101010;
             --primary-gold: #C8AA6E;
+            --gold-light: #F0E68C;
             --text-main: #E0E0E0;
             --text-muted: #888888;
         }
@@ -37,26 +38,19 @@
             position: relative;
             overflow: hidden;
             background-image: url("https://www.transparenttextures.com/patterns/black-linen.png");
-            min-height: 550px; 
+            min-height: 600px;
         }
 
-        /* 裝飾角標 */
+        /* 裝飾 */
         .corner { position: absolute; width: 15px; height: 15px; border: 1px solid var(--primary-gold); }
         .tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
         .tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
         .bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
         .br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-        header { text-align: center; margin-bottom: 40px; z-index: 2; position: relative; }
-        
-        .logo-box {
-            width: 80px; height: 80px; margin: 0 auto 15px;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .logo-box img {
-            width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-            border: 2px solid var(--primary-gold); padding: 3px;
-        }
+        header { text-align: center; margin-bottom: 30px; z-index: 2; position: relative; }
+        .logo-box { width: 80px; height: 80px; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; }
+        .logo-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid var(--primary-gold); padding: 3px; }
 
         h1 { font-family: 'Cinzel', serif; font-size: 20px; color: var(--primary-gold); margin: 0; letter-spacing: 2px; }
         .subtitle {
@@ -65,13 +59,13 @@
             display: inline-block; padding: 8px 15px; margin-top: 5px;
         }
 
-        /* 翻頁效果 */
-        .step { display: none; animation: fadeIn 0.6s ease; }
+        /* 翻頁 */
+        .step { display: none; animation: fadeIn 0.5s ease; }
         .step.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 表單樣式 */
-        .form-group { margin-bottom: 30px; }
+        /* 表單元素 */
+        .form-group { margin-bottom: 25px; }
         label { display: block; font-size: 13px; color: var(--primary-gold); margin-bottom: 8px; letter-spacing: 1px; }
 
         input, select {
@@ -83,11 +77,58 @@
         }
         input:focus, select:focus { border-bottom-color: var(--primary-gold); }
 
-        /* 隱藏區塊 (用於備註) */
-        .hidden-block { display: none; margin-top: 10px; animation: slideDown 0.3s ease; }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* 隱藏區塊 */
+        .hidden-block { display: none; margin-top: 10px; }
 
-        /* 按鈕 */
+        /* V9.0 全新時間按鈕樣式 */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 一排三個 */
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-btn {
+            padding: 12px 5px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #444;
+            color: #aaa;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        /* 選中狀態：金底黑字 */
+        .time-btn.selected {
+            background: var(--primary-gold);
+            color: #000;
+            border-color: var(--primary-gold);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(200, 170, 110, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* 已預約狀態：打叉、變暗 */
+        .time-btn.booked {
+            background: #000;
+            color: #333;
+            border-color: #222;
+            cursor: not-allowed;
+            text-decoration: line-through;
+            pointer-events: none;
+        }
+        
+        /* 懸停效果 (僅限未預約) */
+        .time-btn:not(.booked):not(.selected):hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        /* 按鈕群組 */
         .btn-group { margin-top: 40px; display: flex; gap: 15px; }
         button {
             flex: 1; padding: 15px;
@@ -98,18 +139,17 @@
         button.primary { background: var(--primary-gold); color: #000; }
         button:active { transform: scale(0.98); }
 
-        /* 提示文字 */
         .time-note {
-            font-size: 12px; color: #666; margin-top: 15px; 
-            border: 1px solid #333; padding: 10px; border-radius: 4px;
-            line-height: 1.6;
+            font-size: 11px; color: #666; margin-top: 15px; 
+            border: 1px solid #333; padding: 10px; border-radius: 4px; line-height: 1.6;
         }
-
-        /* 第三頁樣式 */
+        
+        /* 第三頁總結 */
         .success-icon { text-align: center; font-size: 50px; color: var(--primary-gold); margin-bottom: 20px; }
         .summary-box { background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #333; margin-bottom: 25px; }
         .summary-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
         .s-val { color: var(--primary-gold); text-align: right; }
+
     </style>
 </head>
 <body>
@@ -162,7 +202,8 @@
                 <label>預約目的 / PURPOSE</label>
                 <select name="purpose" id="inputPurpose" required onchange="checkMemo(this.value)">
                     <option value="入會體驗">入會體驗</option>
-                    <option value="舊客預約">舊客預約</option> <option value="資料補齊">資料補齊</option>
+                    <option value="舊客預約">舊客預約</option>
+                    <option value="資料補齊">資料補齊</option>
                     <option value="其他諮詢">其他諮詢</option>
                 </select>
             </div>
@@ -181,11 +222,13 @@
 
             <div class="form-group">
                 <label>預約時段 / TIME</label>
-                <select name="timeSelect" id="timeSelect" required>
-                    <option value="">請先選擇日期</option>
-                </select>
+                <div id="timeGrid" class="time-grid">
+                    <div style="grid-column: span 3; text-align:center; color:#555; font-size:12px;">請先選擇日期</div>
+                </div>
+                <input type="hidden" name="timeSelect" id="timeSelectInput" required>
+                
                 <div class="time-note">
-                    * 僅顯示 Roni 當班時段<br>
+                    * 若該時段顯示刪除線代表已被預約。<br>
                     * 欲選擇其他時段請私訊 Roni 官方 Line，當天將交由同事協助。
                 </div>
             </div>
@@ -220,52 +263,35 @@
         discordUrl: "https://discordapp.com/api/webhooks/1449799845144559731/pTkKrAfV2NlUayLtBqN2nNLAXj5ktq_6cXsYwEgrZCWjCFw7j8dFscCG7kVmyrhAlLps",
         googleScriptUrl: "https://script.google.com/macros/s/AKfycbyBNTeC51u7lKbzx_BOFqNwgTwkMoA0HFLN4aOxUPSUaRtErAmtrS-Ml5oM_F9oYCx-EQ/exec",
         lineUrl: "https://line.me/ti/p/@781uizhn",
-        limitDate: "2025-12-28", // 最後可預約日期
-        limitTime: 18 // 最後一天只到 18:00
+        limitDate: "2025-12-28",
+        limitTime: 18 // 12/28 截止時間
     };
 
-    // 存放後台回傳的「已預約清單」
     let BOOKED_SLOTS = [];
 
-    // --- 初始載入：抓取已預約時段 ---
-    window.onload = function() {
-        fetchBookedSlots();
-    };
+    window.onload = function() { fetchBookedSlots(); };
 
     function fetchBookedSlots() {
         fetch(CONFIG.googleScriptUrl)
             .then(response => response.json())
             .then(data => {
-                BOOKED_SLOTS = data; // 存入全域變數
-                initCalendar(); // 資料回來後再產生日期，確保同步
+                BOOKED_SLOTS = data;
+                initCalendar();
             })
-            .catch(error => {
-                console.error("無法讀取後台資料", error);
-                initCalendar(); // 即使失敗也要讓日曆顯示
-            });
+            .catch(error => { console.error(error); initCalendar(); });
     }
 
-    // --- 備註欄顯示邏輯 ---
+    // --- 功能邏輯 ---
     function checkMemo(val) {
         const block = document.getElementById('memoGroup');
         const input = document.getElementById('inputMemo');
-        if (val === '其他諮詢') {
-            block.style.display = 'block';
-            input.required = true;
-        } else {
-            block.style.display = 'none';
-            input.required = false;
-            input.value = ''; // 清空
-        }
+        if (val === '其他諮詢') { block.style.display = 'block'; input.required = true; }
+        else { block.style.display = 'none'; input.required = false; input.value = ''; }
     }
 
-    // --- 翻頁 ---
     function goToStep(step) {
         if(step === 2) {
-            // 驗證第一頁
-            if(!document.getElementById('inputName').value || 
-               !document.getElementById('inputPhone').value || 
-               !document.getElementById('inputFactory').value) {
+            if(!document.getElementById('inputName').value || !document.getElementById('inputPhone').value || !document.getElementById('inputFactory').value) {
                 alert("請完整填寫資料"); return;
             }
         }
@@ -273,9 +299,10 @@
         document.getElementById(`step${step}`).classList.add('active');
     }
 
-    // --- 日期與時間 ---
+    // --- 日期與時間 (直覺按鈕版) ---
     const dateSelect = document.getElementById('dateSelect');
-    const timeSelect = document.getElementById('timeSelect');
+    const timeGrid = document.getElementById('timeGrid');
+    const timeInput = document.getElementById('timeSelectInput');
 
     function initCalendar() {
         dateSelect.innerHTML = '<option value="">請選擇日期</option>';
@@ -285,14 +312,12 @@
         for(let i=1; i<=30; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() + i);
-            
             const yyyy = d.getFullYear();
             const mm = (d.getMonth()+1).toString().padStart(2,'0');
             const dd = d.getDate().toString().padStart(2,'0');
             const dateStr = `${yyyy}-${mm}-${dd}`;
             
             if (dateStr > CONFIG.limitDate) break;
-
             const opt = document.createElement('option');
             opt.value = dateStr;
             opt.innerText = `${mm}/${dd} (${weekDays[d.getDay()]})`;
@@ -300,55 +325,72 @@
         }
     }
 
-    // 產生時間 (核心邏輯：過濾已預約)
+    // 產生按鈕陣列
     function initTime() {
         const dateVal = dateSelect.value;
-        timeSelect.innerHTML = '<option value="">請選擇時段</option>';
-        if(!dateVal) return;
+        timeGrid.innerHTML = ''; // 清空
+        timeInput.value = '';    // 清空選取值
 
-        let endH = (dateVal === CONFIG.limitDate) ? CONFIG.limitTime : 22; // 22:00 下班
+        if(!dateVal) {
+            timeGrid.innerHTML = '<div style="grid-column: span 3; text-align:center; color:#555; font-size:12px;">請先選擇日期</div>';
+            return;
+        }
 
-        for(let h=10; h<=endH; h++) { // 10:00 上班
+        let endH = (dateVal === CONFIG.limitDate) ? CONFIG.limitTime : 22;
+
+        for(let h=10; h<=endH; h++) {
             const timeStr = `${h.toString().padStart(2,'0')}:00`;
-            const fullSlot = `${dateVal} ${timeStr}`; // 格式：2025-12-16 10:00
+            const fullSlot = `${dateVal} ${timeStr}`;
             
-            const opt = document.createElement('option');
-            opt.value = timeStr;
+            // 建立按鈕
+            const btn = document.createElement('div');
+            btn.className = 'time-btn';
+            btn.innerText = timeStr;
             
-            // 🚫 檢查是否被預約
-            // 這裡用寬鬆比對：只要後台回傳的字串包含這個日期時間，就鎖住
+            // 檢查預約
             const isBooked = BOOKED_SLOTS.some(slot => slot.includes(fullSlot));
             
             if (isBooked) {
-                opt.disabled = true;
-                opt.innerText = `${timeStr} (該時段已被預約)`;
-                opt.style.color = "#d9534f"; // 紅色提示
+                btn.classList.add('booked'); // 變灰、刪除線
             } else {
-                opt.innerText = timeStr;
+                // 點擊事件
+                btn.onclick = function() {
+                    // 移除其他人的 selected
+                    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
+                    // 自己加上 selected
+                    btn.classList.add('selected');
+                    // 寫入隱藏 input
+                    timeInput.value = timeStr;
+                };
             }
-            timeSelect.appendChild(opt);
+            timeGrid.appendChild(btn);
         }
     }
     
     dateSelect.addEventListener('change', initTime);
 
-    // --- 送出 ---
+    // --- 送出表單 ---
     const form = document.getElementById('bookingForm');
     form.addEventListener('submit', e => {
         e.preventDefault();
+        
+        // 額外檢查：有沒有選時間
+        if(!timeInput.value) {
+            alert("請點擊選擇一個預約時段");
+            return;
+        }
+
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
         btn.innerText = "處理中...";
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        const fullDateTime = `${data.dateSelect} ${data.timeSelect}`;
+        const fullDateTime = `${data.dateSelect} ${timeInput.value}`; // 這裡改用 timeInput.value
         
-        // 強制寫入 Google Sheet 的欄位修正
-        formData.append("date", fullDateTime); // 欄位 F
-        formData.set("phone", "'" + data.phone); // 欄位 D (加單引號)
+        formData.append("date", fullDateTime);
+        formData.set("phone", "'" + data.phone);
 
-        // Discord 通知
         const discordPayload = {
             username: "Roni 預約管家",
             embeds: [{
@@ -391,16 +433,13 @@
     function copyInfo() {
         const items = document.querySelectorAll('.summary-item');
         let text = "【Roni 預約確認】\n";
-        items.forEach(item => {
-            text += `${item.children[0].innerText}：${item.children[1].innerText}\n`;
-        });
+        items.forEach(item => { text += `${item.children[0].innerText}：${item.children[1].innerText}\n`; });
         navigator.clipboard.writeText(text).then(() => alert("已複製！"));
     }
 
     function addToCalendar() {
-        // 簡易 Google Calendar Link
         const date = document.getElementById('dateSelect').value.replace(/-/g,'');
-        const time = document.getElementById('timeSelect').value.replace(/:/g,'');
+        const time = timeInput.value.replace(/:/g,'');
         const start = `${date}T${time}00`;
         const end = `${date}T${parseInt(time)+100}00`;
         const details = `預約廠館：${document.getElementById('inputFactory').value}`;
